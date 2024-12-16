@@ -11,7 +11,7 @@ public class PaymentService {
         if (paymentType.equals("CREDIT_CARD")) {
             // Process credit card payment
             System.out.println("Processing credit card payment...");
-        } else if (paymentType.equals("PAYPAL")) {
+        } else if (paymentType.equals("UPI")) {
             // Process PayPal payment
             System.out.println("Processing PayPal payment...");
         } else {
@@ -20,13 +20,12 @@ public class PaymentService {
     }
 }
 ```
-What’s wrong here?
-
+What’s wrong here?  
 Violation of OCP:  
-Adding a new payment type requires modifying the processPayment method. For example, if you want to add BANK_TRANSFER , UPI, you need to modify the if-else block.
+Adding a new payment type requires modifying the processPayment method. For example, if you want to add Bank Transfer, you need to modify the if-else block.
 This approach makes the code harder to maintain and test, increasing the risk of introducing bugs in existing logic.
 Tightly Coupled: The logic for handling payment types is hardcoded into the PaymentService class, making it less flexible.
----
+
 GOOD Code (Adhering to OCP): 
 ```java
 //interface
