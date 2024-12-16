@@ -15,7 +15,7 @@
     [Dependency Inversion Principle (DIP)](https://github.com/mafsan786git/low-level-design-learning/tree/main/SolidPrinciples/DependencyInversionPrinciple#readme)
 
 
-##$ Liskov(LSP) vs Interface (ISP)
+## Liskov(LSP) vs Interface (ISP)
 Liskov Substitution Principle (LSP) and Interface Segregation Principle (ISP) are connected, 
 as they both belong to the SOLID principles of object-oriented design, and they often complement each other in designing robust and maintainable systems. 
 
