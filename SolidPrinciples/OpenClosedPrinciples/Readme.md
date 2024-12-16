@@ -96,5 +96,5 @@ Key Advantages:
 
 
 **Conclusion**:  
-**_Bad Code_**: Hardcoding payment types and logic in a single class violates OCP, leading to tight coupling and high maintenance costs.
+**_Bad Code_**: Hardcoding payment types and logic in a single class violates OCP, leading to tight coupling and high maintenance costs.  
 **_Good Code_**: By relying on abstractions and leveraging polymorphism, the system becomes flexible, extensible, and adheres to the Open/Closed Principle.
