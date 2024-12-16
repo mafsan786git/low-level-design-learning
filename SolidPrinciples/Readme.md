@@ -1,21 +1,21 @@
 ## Solid Principles
-### Single Responsibility Principle (SRP)
-[Single Responsibility Principle (SRP)](https://github.com/mafsan786git/low-level-design-learning/blob/main/SolidPrinciples/SingleResponsibilityPrinciple#readme)
+1. ### Single Responsibility Principle (SRP)
+    [Single Responsibility Principle (SRP)](https://github.com/mafsan786git/low-level-design-learning/blob/main/SolidPrinciples/SingleResponsibilityPrinciple#readme)
 
-### Open/Closed Principle (OCP)
-[Open/Closed Principle (OCP)](https://github.com/mafsan786git/low-level-design-learning/blob/main/SolidPrinciples/OpenClosedPrinciple#readme)
+2. ### Open/Closed Principle (OCP)
+    [Open/Closed Principle (OCP)](https://github.com/mafsan786git/low-level-design-learning/blob/main/SolidPrinciples/OpenClosedPrinciple#readme)
 
-### Liskov Substitution Principle (LSP)
-[Liskov Substitution Principle (LSP)](https://github.com/mafsan786git/low-level-design-learning/blob/main/SolidPrinciples/LiskovSubstitutionPrinciple#readme)
+3. ### Liskov Substitution Principle (LSP)
+    [Liskov Substitution Principle (LSP)](https://github.com/mafsan786git/low-level-design-learning/blob/main/SolidPrinciples/LiskovSubstitutionPrinciple#readme)
 
-### Interface Segregation Principle (ISP)
-[Interface Segregation Principle (ISP)](https://github.com/mafsan786git/low-level-design-learning/tree/main/SolidPrinciples/InterfaceSegregationPrinciple#readme)
+4. ### Interface Segregation Principle (ISP)
+    [Interface Segregation Principle (ISP)](https://github.com/mafsan786git/low-level-design-learning/tree/main/SolidPrinciples/InterfaceSegregationPrinciple#readme)
 
-### Dependency Inversion Principle (DIP)
-[Dependency Inversion Principle (DIP)](https://github.com/mafsan786git/low-level-design-learning/tree/main/SolidPrinciples/DependencyInversionPrinciple#readme)
+5. ### Dependency Inversion Principle (DIP)
+    [Dependency Inversion Principle (DIP)](https://github.com/mafsan786git/low-level-design-learning/tree/main/SolidPrinciples/DependencyInversionPrinciple#readme)
 
 
-### Liskov(LSP) vs Interface (ISP)
+##$ Liskov(LSP) vs Interface (ISP)
 Liskov Substitution Principle (LSP) and Interface Segregation Principle (ISP) are connected, 
 as they both belong to the SOLID principles of object-oriented design, and they often complement each other in designing robust and maintainable systems. 
 
