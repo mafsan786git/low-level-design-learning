@@ -58,13 +58,6 @@ public class UserRepository {
     }
 }
 
-public class UserRepository {
-    public void saveUser(UserDetails userDetails){
-        //Database operations here
-        System.out.println("UserDetails saved : " + userDetails.getName());
-    }
-}
-
 public class EmailValidation {
     public  boolean isValidEmail(String email){
         if (email == null ) return false;
