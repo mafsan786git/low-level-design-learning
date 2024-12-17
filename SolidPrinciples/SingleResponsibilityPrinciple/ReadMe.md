@@ -58,6 +58,18 @@ public class UserRepository {
     }
 }
 
+public class UserValidation {
+    private final EmailValidation emailValidation;
+    public UserValidation(EmailValidation emailValidation) {
+        this.emailValidation = emailValidation;
+    }
+
+    public boolean validateUserDetails(UserDetails userDetails){
+        return userDetails.getName() != null && emailValidation.isValidEmail(userDetails.getEmail());
+    }
+}
+
+
 public class EmailValidation {
     public  boolean isValidEmail(String email){
         if (email == null ) return false;
