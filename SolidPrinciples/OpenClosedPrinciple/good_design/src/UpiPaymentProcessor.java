@@ -1,7 +1,7 @@
 public class UpiPaymentProcessor implements PaymentProcessor {
 
     @Override
-    public String processPayment() {
+    public String processPayment(String details) {
         return "Processing UPI payment";
     }
 }

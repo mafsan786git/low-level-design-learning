@@ -8,10 +8,14 @@ Example: Instead of creating a UserManager class that handles validation user da
 Please look at the following code :
 **Bad Design**
 ```java
-public class UserManagerService {
+public class UserService {
+    
+    public String saveUser(UserDetails userDetails){
+        return "UserDetails saved : " + userDetails.getName();
+    }
 
-    public void saveUser(UserDetails userDetails){
-        System.out.println("UserDetails saved : " + userDetails.getName());
+    public boolean validateUserDetails(UserDetails userDetails){
+        return userDetails != null && userDetails.getName() != null && userDetails.getEmail() != null;
     }
 
     public  boolean isValidEmail(String email){
@@ -21,8 +25,24 @@ public class UserManagerService {
         return matcherRgx.matches();
     }
 
-    public void sendEmail(String email,String message){
-        System.out.println("Sending email to: " + email + " message : " + message);
+    public String sendEmail(String email,String message){
+        return "Sending email to: " + email + " message : " + message;
+    }
+}
+
+public class UserManagerService {
+    private final UserService userService;
+
+    public UserManagerService(UserService userService) {
+        this.userService = userService;
+    }
+
+    public String saveUser(UserDetails userDetails) {
+        if (!userService.validateUserDetails(userDetails)) throw new InvalidRequestStateException("Invalid user details");
+        if (!userService.isValidEmail(userDetails.getEmail())) throw new InvalidRequestStateException("Invalid user emailId");
+        String saveUser = userService.saveUser(userDetails);
+        userService.sendEmail(userDetails.getEmail(),"Test email");
+        return saveUser;
     }
 }
 ```

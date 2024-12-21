@@ -1,29 +1,32 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class PaymentProcessorManagerTest {
 
-    private PaymentProcessorManager paymentProcessorManager;
+    private PaymentManagerService paymentProcessorManager;
+
+    @Before
+    public void setUp() {
+        paymentProcessorManager = new PaymentManagerService(new PaymentProcessorFactory());
+    }
 
     @Test
     public void testProcessPaymentCreditCard() {
-        paymentProcessorManager = new PaymentProcessorManager(new CreditCardPaymentProcessor());
-        String result = paymentProcessorManager.processPayment();
+        String result = paymentProcessorManager.processPayment("Credit Card",PaymentType.CREDIT_CARD);
         assertEquals("Processing credit card", result);
     }
 
     @Test
     public void testProcessPaymentUPI() {
-        paymentProcessorManager = new PaymentProcessorManager(new UpiPaymentProcessor());
-        String result = paymentProcessorManager.processPayment();
+        String result = paymentProcessorManager.processPayment("UPI payment",PaymentType.UPI);
         assertEquals("Processing UPI payment", result);
     }
 
     @Test
     public void testProcessPaymentBankTransfer() {
-        paymentProcessorManager = new PaymentProcessorManager(new BankTransferPaymentProcessor());
-        String result = paymentProcessorManager.processPayment();
+        String result = paymentProcessorManager.processPayment("Bank transfer",PaymentType.BANK_TRANSFER);
         assertEquals("Processing Bank Transfer.", result);
     }
 }

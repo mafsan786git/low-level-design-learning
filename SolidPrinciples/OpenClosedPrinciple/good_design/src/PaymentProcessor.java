@@ -1,3 +1,3 @@
 public interface PaymentProcessor {
-    String processPayment();
+    String processPayment(String details);
 }

@@ -19,6 +19,20 @@ public class PaymentService {
         }
     }
 }
+
+public class PaymentManagerService {
+    private final PaymentService paymentService;
+
+
+    public PaymentManagerService(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
+
+    public String processPayment(String paymentType) {
+        return paymentService.processPayment(paymentType);
+    }
+}
+
 ```
 What’s wrong here?  
 Violation of OCP:  
@@ -30,14 +44,14 @@ GOOD Code (Adhering to OCP):
 ```java
 //interface
 public interface PaymentProcessor {
-    String processPayment();
+    String processPayment(String details);
 }
 
 //CreditCard implementation
 public class CreditCardPaymentProcessor implements PaymentProcessor {
 
     @Override
-    public String processPayment() {
+    public String processPayment(String details) {
         return "Processing credit card";
     }
 }
@@ -47,23 +61,46 @@ public class CreditCardPaymentProcessor implements PaymentProcessor {
 public class UpiPaymentProcessor implements PaymentProcessor {
 
     @Override
-    public String processPayment() {
+    public String processPayment(String details) {
         return "Processing UPI payment";
     }
 }
 
-
 //Payment Process Manager
-public class PaymentProcessorManager {
+public class PaymentManagerService {
+    private final PaymentProcessorFactory paymentProcessorFactory;
 
-    private final PaymentProcessor paymentProcessor;
-
-    public PaymentProcessorManager(PaymentProcessor paymentProcessor){
-        this.paymentProcessor = paymentProcessor;
+    public PaymentManagerService(PaymentProcessorFactory paymentProcessorFactory) {
+        this.paymentProcessorFactory = paymentProcessorFactory;
     }
 
-    public String processPayment(){
-        return paymentProcessor.processPayment();
+
+    public String processPayment(String details,PaymentType paymentType){
+        PaymentProcessor paymentProcessor = paymentProcessorFactory.getPaymentProcessor(paymentType);
+        return paymentProcessor.processPayment(details);
+    }
+
+}
+
+public class PaymentProcessorFactory {
+
+    private final Map<PaymentType, PaymentProcessor> map;
+
+    public PaymentProcessorFactory() {
+        this.map = new HashMap<>();
+    }
+
+    public synchronized PaymentProcessor getPaymentProcessor(PaymentType paymentType) {
+        return map.computeIfAbsent(paymentType, this::createPaymentProcessor);
+    }
+
+    private PaymentProcessor createPaymentProcessor(PaymentType paymentType) {
+        return switch (paymentType) {
+            case CREDIT_CARD -> new CreditCardPaymentProcessor();
+            case UPI -> new UpiPaymentProcessor();
+            case BANK_TRANSFER -> new BankTransferPaymentProcessor();
+            default -> throw new IllegalArgumentException("Unsupported payment type: " + paymentType);
+        };
     }
 }
 
@@ -75,7 +112,7 @@ required in any of core logic.
 ```java
 public class BankTransferPaymentProcessor implements PaymentProcessor {
     @Override
-    public String processPayment() {
+    public String processPayment(String details) {
         return "Processing Bank Transfer.";
     }
 }

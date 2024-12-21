@@ -1,7 +1,7 @@
 public class CreditCardPaymentProcessor implements PaymentProcessor {
 
     @Override
-    public String processPayment() {
+    public String processPayment(String details) {
         return "Processing credit card";
     }
 }

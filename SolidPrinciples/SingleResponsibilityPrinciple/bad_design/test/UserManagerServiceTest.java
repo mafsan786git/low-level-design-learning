@@ -4,11 +4,11 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class UserManagerServiceTest {
-    UserManagerService userManager;
+    UserService userManager;
     @Before
     public void setUp() {
         // Initialize resources before each test case
-        userManager = new UserManagerService();
+        userManager = new UserService();
     }
 
     @Test
