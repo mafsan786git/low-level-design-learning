@@ -22,6 +22,7 @@ public class EagerSingletonDesignPattern {
     }
 }
 ```
+---
 `**Lazy Initialization (Basic):**`  
 This version only creates the instance when first requested, saving resources. However, 
 it's not thread-safe. If multiple threads call getInstance() simultaneously, you might end up with multiple instances. 
@@ -41,6 +42,7 @@ public class LazySingletonDesignPattern {
     }
 }
 ```
+---
 `**Thread-Safe Synchronization:**`  
 By adding the synchronized keyword, we ensure thread safety. However, synchronization adds overhead because threads must wait for the lock to be released, 
 even after initialization. This impacts performance, especially in applications with high concurrency.
@@ -58,6 +60,7 @@ public class ThreadSafeSingletonDesignPattern {
     }
 }
 ```
+---
 `**Double-Checked Locking:**`  
 This pattern attempts to reduce the synchronization overhead by checking the instance twice. 
 The volatile keyword is crucial here to prevent partially constructed instances from being visible to other threads. 
@@ -82,6 +85,7 @@ public class DoubleCheckedLockingSingleton {
     }
 }
 ```
+---
 `**Bill Pugh Singleton (Static Holder):**`  
 This is considered the best approach for most cases. It provides lazy initialization through JVM's class loading mechanism, ensuring thread safety without using synchronization. 
 The inner class isn't loaded until getInstance() is called, making it both efficient and thread-safe.
@@ -98,6 +102,7 @@ public class BillPughStaticHolderSingleton {
     }
 }
 ```
+---
 `**Enum Singleton:**`  
 The enum approach, introduced in Java 5, is the simplest way to create a thread-safe singleton. 
 It's inherently serializable and provides strong guarantees against multiple instantiation, even in cases of serialization or reflection. 
@@ -111,6 +116,7 @@ public enum EnumSingleton {
     }
 }
 ```
+---
 
 
 ### _Here's a practical comparison of when to use each approach:_
