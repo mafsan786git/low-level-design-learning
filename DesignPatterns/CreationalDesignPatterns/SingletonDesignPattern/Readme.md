@@ -5,7 +5,7 @@ Think of it like having a single shared resource - similar to how a company migh
 
 
 #### Let's explore different ways to implement Singleton, starting from the simplest and moving to more sophisticated versions:
-**Eager Initialization (Basic Static):**  
+`**Eager Initialization (Basic Static):**`  
 This approach is the simplest but has important characteristics to consider. The instance is created when the class loads, even if it's never used. 
 While this ensures thread safety through the JVM's class loading mechanism, it might waste resources if the instance is heavy and not always needed. 
 It's best used when you're certain the instance will be needed and the initialization cost is low.
@@ -22,7 +22,7 @@ public class EagerSingletonDesignPattern {
     }
 }
 ```
-**Lazy Initialization (Basic):**  
+`**Lazy Initialization (Basic):**`  
 This version only creates the instance when first requested, saving resources. However, 
 it's not thread-safe. If multiple threads call getInstance() simultaneously, you might end up with multiple instances. 
 This makes it suitable only for single-threaded environments.
@@ -41,7 +41,7 @@ public class LazySingletonDesignPattern {
     }
 }
 ```
-**Thread-Safe Synchronization:**  
+`**Thread-Safe Synchronization:**`  
 By adding the synchronized keyword, we ensure thread safety. However, synchronization adds overhead because threads must wait for the lock to be released, 
 even after initialization. This impacts performance, especially in applications with high concurrency.
 ```java
@@ -58,7 +58,7 @@ public class ThreadSafeSingletonDesignPattern {
     }
 }
 ```
-**Double-Checked Locking:**  
+`**Double-Checked Locking:**`  
 This pattern attempts to reduce the synchronization overhead by checking the instance twice. 
 The volatile keyword is crucial here to prevent partially constructed instances from being visible to other threads. 
 While this pattern was popular, it's complex and can be tricky to implement correctly.
@@ -82,7 +82,7 @@ public class DoubleCheckedLockingSingleton {
     }
 }
 ```
-**Bill Pugh Singleton (Static Holder):**  
+`**Bill Pugh Singleton (Static Holder):**`  
 This is considered the best approach for most cases. It provides lazy initialization through JVM's class loading mechanism, ensuring thread safety without using synchronization. 
 The inner class isn't loaded until getInstance() is called, making it both efficient and thread-safe.
 ```java
@@ -98,7 +98,7 @@ public class BillPughStaticHolderSingleton {
     }
 }
 ```
-**Enum Singleton:**  
+`**Enum Singleton:**`  
 The enum approach, introduced in Java 5, is the simplest way to create a thread-safe singleton. 
 It's inherently serializable and provides strong guarantees against multiple instantiation, even in cases of serialization or reflection. 
 However, it's less flexible because enum types can't inherit from classes.
