@@ -4,6 +4,18 @@ Subtypes must be substitutable for their base types without altering the correct
 you should be able to replace it with any of its subclasses without breaking functionality.  
 The LSP ensures that inheritance is used properly. Violating it often indicates a problem with the hierarchy design or an inappropriate abstraction.
 
+The Liskov Substitution Principle (LSP) is an object-oriented programming principle that states that subclasses can replace their superclasses without altering the program's correctness:  
+1. Explanation:  
+    The LSP requires that subclasses can take on the responsibilities of their superclasses without any side effects or behavioral changes. In other words, code that works with a specific type of object should also work with any of its subclasses.
+2. Example:  
+    For example, if you have a class called Animal and another class called Dog that inherits from Animal, then you should be able to use Dog in any place where you would normally use Animal.
+3. Importance
+    The LSP promotes reusability, modularity, and maintainability by ensuring that components within a hierarchy can be easily interchanged.
+4. Indicators of LSP violations
+   * Conditional logic in client code
+   * Empty implementations of methods in subclasses
+   * Throwing unexpected exceptions from a subclass method
+
 Bad code (Violating LSP)
 ```java
 public interface IEmployee {
